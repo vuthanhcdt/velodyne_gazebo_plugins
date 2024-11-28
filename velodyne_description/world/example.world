@@ -1,0 +1,123 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <world name="default">
+    <!-- A global light source -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <!-- A ground plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    <!-- A unit box -->
+    <model name='unit_box_0_0'>
+      <pose frame=''>-1.5 2.5 0.5 0 -0 0</pose>
+      <link name='link'>
+        <inertial>
+          <mass>1</mass>
+          <inertia>
+            <ixx>0.166667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.166667</iyy>
+            <iyz>0</iyz>
+            <izz>0.166667</izz>
+          </inertia>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>1 1 1</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>1 1 1</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+    </model>
+    
+      <!-- A pedestrian -->
+  <actor name="actor">
+    <pose>0 0 0 0 0 0</pose>
+    <skin>
+      <filename>walk.dae</filename>
+      <scale>1.0</scale>
+    </skin>
+    <animation name="walking">
+      <filename>walk.dae</filename>
+      <scale>1.000000</scale>
+      <interpolate_x>true</interpolate_x>
+    </animation>
+    <script>
+      <loop>true</loop>
+      <delay_start>0</delay_start>
+      <auto_start>true</auto_start>
+      <trajectory id="0" type="walking">
+        <!-- Movement along a rectangular path -->
+        <waypoint>
+          <time>0</time>
+          <pose>0 0 0 0 0 0</pose>  <!-- Starting point -->
+        </waypoint>
+      
+        <waypoint>
+          <time>35</time>
+          <pose>29 0 0 0 0 0</pose>  <!-- Move right -->
+        </waypoint>
+        <waypoint>
+          <time>40</time>
+          <pose>30 2 0 0 0 1.57</pose>  <!-- Move right -->
+        </waypoint>
+        <waypoint>
+          <time>57</time>
+          <pose>30 20 0 0 0 1.57</pose>  <!-- Move right -->
+        </waypoint>
+        <waypoint>
+          <time>62</time>
+          <pose>29 20 0 0 0 3.14</pose>  <!-- Move right -->
+        </waypoint>
+         <waypoint>
+          <time>97</time>
+          <pose>1 20 0 0 0 3.14</pose>  <!-- Move right -->
+        </waypoint>
+        <waypoint>
+          <time>102</time>
+          <pose>1 19 0 0 0 4.71</pose>  <!-- Move right -->
+        </waypoint>
+         <waypoint>
+          <time>119</time>
+          <pose>0 0 0 0 0 4.71</pose>  <!-- Move right -->
+        </waypoint>
+
+      </trajectory>
+    </script>
+  </actor>
+
+  </world>
+</sdf>
